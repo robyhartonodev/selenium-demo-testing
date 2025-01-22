@@ -39,3 +39,10 @@ jobs:
       env:
         SELENIUM_REMOTE_URL: http://localhost:4444/wd/hub
       run: npm run test:selenium
+
+    - name: Upload Screenshot on Failure
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: selenium-screenshot
+          path: screenshot.png

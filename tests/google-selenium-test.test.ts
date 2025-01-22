@@ -1,4 +1,6 @@
 import { Builder, By, Key, until, WebDriver } from "selenium-webdriver";
+import * as fs from 'fs';
+import { log, error } from "console";
 
 let driver: WebDriver;
 
@@ -11,7 +13,11 @@ afterAll(async () => {
 });
 
 test('Google search', async () => {
+  log("help123");
   await driver.get('https://www.google.com');
+
+  const screenshot = await driver.takeScreenshot();
+  fs.writeFileSync('screenshot.png', screenshot, 'base64');
 
   // Click accept all for the cookie consent
   const consentAcceptAllButtonDiv = await driver.wait(

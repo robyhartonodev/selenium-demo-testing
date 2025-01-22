@@ -35,9 +35,6 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Compile TypeScript
-      run: npx tsc
-
     - name: Run Jest tests
       env:
         SELENIUM_REMOTE_URL: http://localhost:4444/wd/hub

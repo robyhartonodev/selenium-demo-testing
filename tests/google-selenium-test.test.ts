@@ -16,15 +16,14 @@ test('Google search', async () => {
   // Click accept all for the cookie consent
   const consentAcceptAllButtonDiv = await driver.wait(
     until.elementLocated(By.xpath("/html/body/div[2]/div[2]/div[3]/span/div/div/div/div[3]/div[1]/button[2]/div")),
-    5000
+    10000
   );
-  console.log(consentAcceptAllButtonDiv);
   await consentAcceptAllButtonDiv.click();
 
   // Find google search bar and type input
   let textarea = await driver.wait(
     until.elementLocated(By.css("textarea[name='q']")),
-    5000 // Wait up to 5 seconds
+    10000
   );
 
   const searchInputText = "Hello, world!";

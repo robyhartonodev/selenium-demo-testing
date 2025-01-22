@@ -22,8 +22,8 @@ test('Google search', async () => {
       await consentAcceptAllButtonDiv.click();
     }
   } catch (error) {
-    const screenshot = await driver.takeScreenshot();
-    fs.writeFileSync('screenshot.png', screenshot, 'base64');
+    const errorScreenshot = await driver.takeScreenshot();
+    fs.writeFileSync('error_screenshot.png', errorScreenshot, 'base64');
   }
 
   // Find google search bar and type input
@@ -48,4 +48,6 @@ test('Google search', async () => {
 
   // Got blocked by google captcha, because google is too smart
   await driver.sleep(10000);
+  const successScreenshot = await driver.takeScreenshot();
+  fs.writeFileSync('success_screenshot.png', successScreenshot, 'base64');
 });

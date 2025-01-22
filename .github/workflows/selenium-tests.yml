@@ -41,8 +41,8 @@ jobs:
       run: npm run test:selenium
 
     - name: Upload Screenshot on Failure
-        if: failure()
-        uses: actions/upload-artifact@v2
-        with:
-          name: selenium-screenshot
-          path: screenshot.png
+      if: failure()
+      uses: actions/upload-artifact@v2
+      with:
+        name: selenium-screenshot
+        path: screenshot.png

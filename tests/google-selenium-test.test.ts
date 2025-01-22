@@ -15,13 +15,15 @@ afterAll(async () => {
 test('Google search', async () => {
   await driver.get('https://www.google.com');
 
-  const screenshot = await driver.takeScreenshot();
-  fs.writeFileSync('screenshot.png', screenshot, 'base64');
-
-  // Note: in github actions pipeline the cookie consent element doesn't appear apparently
-  const consentAcceptAllButtonDiv = await driver.findElement(By.xpath("/html/body/div[2]/div[2]/div[3]/span/div/div/div/div[3]/div[1]/button[2]/div"));
-  if (consentAcceptAllButtonDiv) {
-    await consentAcceptAllButtonDiv.click();
+  try {
+    // Note: in github actions pipeline the cookie consent element doesn't appear apparently
+    const consentAcceptAllButtonDiv = await driver.findElement(By.xpath("/html/body/div[2]/div[2]/div[3]/span/div/div/div/div[3]/div[1]/button[2]/div"));
+    if (consentAcceptAllButtonDiv) {
+      await consentAcceptAllButtonDiv.click();
+    }
+  } catch (error) {
+    const screenshot = await driver.takeScreenshot();
+    fs.writeFileSync('screenshot.png', screenshot, 'base64');
   }
 
   // Find google search bar and type input

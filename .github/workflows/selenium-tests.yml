@@ -42,7 +42,7 @@ jobs:
 
     - name: Upload Screenshot on Failure
       if: failure()
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: selenium-screenshot
         path: screenshot.png
